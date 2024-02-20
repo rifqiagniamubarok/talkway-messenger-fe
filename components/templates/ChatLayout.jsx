@@ -18,8 +18,8 @@ const ChatLayout = ({ children, className }) => {
   const chatToolName = searchParams.get('chatTool');
 
   return (
-    <div className="grid grid-cols-10 h-screen w-screen">
-      <div className="col-span-3 h-screen bg-secondary">
+    <div className="grid grid-cols-10 ">
+      <div className="col-span-3 bg-secondary">
         {!chatBarName && <ChatBar />}
         {chatBarName == 'profile' && <Profile />}
         {chatBarName == 'newChat' && <NewChat />}

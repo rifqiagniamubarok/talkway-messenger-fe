@@ -14,11 +14,11 @@ const ChatForm = ({ isNewContact, onSendMessage }) => {
   };
   const handleSendMessage = (e) => {
     e.preventDefault();
-
     if (isNewContact) {
       const user_id = router.query.user_id;
-      router.push('/chat/' + user_id);
+      return router.push('/chat/' + user_id);
     }
+
     onSendMessage(message);
     setMessage('');
   };

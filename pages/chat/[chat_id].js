@@ -16,7 +16,9 @@ const ChatMessage = () => {
     if (chatRoomRef.current) {
       chatRoomRef.current.scrollTop = chatRoomRef.current.scrollHeight;
     }
+    console.log({ message });
   };
+
   return (
     <ChatLayout className={'flex flex-col justify-between h-screen'}>
       <ChatHead />
