@@ -6,6 +6,9 @@ import ChatMessageContainer from '@/components/molecules/ChatMessageContainer';
 import ChatRoom from '@/components/organisms/Chat/ChatRoom';
 import ChatHead from '@/components/organisms/Chat/ChatHead';
 import ChatForm from '@/components/organisms/Chat/ChatForm';
+import io from 'socket.io-client';
+const socket = io.connect(process.env.API_HOST);
+
 import { useRouter } from 'next/router';
 const ChatMessage = () => {
   const router = useRouter();
@@ -16,7 +19,7 @@ const ChatMessage = () => {
     if (chatRoomRef.current) {
       chatRoomRef.current.scrollTop = chatRoomRef.current.scrollHeight;
     }
-    console.log({ message });
+    console.log({ message, host: process.env.API_HOST });
   };
 
   return (
