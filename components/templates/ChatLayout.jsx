@@ -26,7 +26,7 @@ const ChatLayout = ({ children, className }) => {
         {chatBarName == 'newContact' && <NewContact />}
       </div>
 
-      <div className={classNames(' bg-[#efeae2]', chatToolName ? 'col-span-4' : 'col-span-7')}>
+      <div className={classNames(' bg-[#0e0c08]', chatToolName ? 'col-span-4' : 'col-span-7')}>
         <div className={classNames(className)}>{children}</div>
       </div>
       {chatToolName && (

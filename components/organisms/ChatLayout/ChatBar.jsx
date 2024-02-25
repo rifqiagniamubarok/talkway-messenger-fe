@@ -7,13 +7,33 @@ import ChatMessagePreview from '@/components/molecules/ChatMessagePreview';
 import { useRouter } from 'next/router';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import axiosInstance from '@/utils/axiosInstance';
+import { useEffect, useState } from 'react';
 
 const ChatBar = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const [chats, setChats] = useState([]);
   const handleLogout = () => {
     router.push('/');
   };
+
+  const fetchData = async () => {
+    try {
+      const {
+        data: {
+          data: { data },
+        },
+      } = await axiosInstance.get('/messages');
+      setChats(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div className="bg-white border-r border-gray-200 flex flex-col w-full h-screen">
@@ -47,11 +67,9 @@ const ChatBar = () => {
       </div>
       <div className="bg-white h-full max-h-full overflow-auto">
         <div>
-          {[...Array(20)].map((_, index) => (
-            <ChatMessagePreview key={index} room_id={`room-${index}`} unread={index} />
+          {chats.map((chat, index) => (
+            <ChatMessagePreview key={index} room_id={chat.room_chat_id} unread={chat.unread} name={chat.name} last_message={chat.last_message} timestamp={chat.updatedAt} />
           ))}
-          <ChatMessagePreview />
-          <ChatMessagePreview />
         </div>
       </div>
     </div>
